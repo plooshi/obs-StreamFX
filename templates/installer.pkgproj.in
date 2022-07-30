@@ -691,7 +691,7 @@
 						<key>LANGUAGE</key>
 						<string>English</string>
 						<key>VALUE</key>
-						<string>@PROJECT_FULL_NAME@</string>
+						<string>@PROJECT_TITLE@</string>
 					</dict>
 				</array>
 			</dict>

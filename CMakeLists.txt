@@ -183,6 +183,8 @@ message(STATUS "${LOGPREFIX}Version ${PROJECT_VERSION}")
 ################################################################################
 # Project
 ################################################################################
+
+# Metadata
 version(GENERATE PROJECT_VERSION_CMAKE
 	MAJOR "${PROJECT_VERSION_MAJOR}"
 	MINOR "${PROJECT_VERSION_MINOR}"
@@ -191,10 +193,14 @@ version(GENERATE PROJECT_VERSION_CMAKE
 )
 project(
 	StreamFX
-	VERSION ${PROJECT_VERSION_CMAKE}
+	VERSION "${PROJECT_VERSION_CMAKE}"
 	DESCRIPTION "Additional sources, filters, transitions and encoders for OBS Studio."
 	HOMEPAGE_URL "https://streamfx.xaymar.com/"
 )
+set(PROJECT_TITLE "StreamFX (for OBS Studio)")
+set(PROJECT_AUTHORS "Michael Fabian 'Xaymar' Dirks <info@xaymar.com>")
+set(PROJECT_COPYRIGHT "2017 - 2022, Michael Fabian Dirks. All Rights Reserved")
+set(PROJECT_TRADEMARKS "")
 
 # Helpers for CI
 if("${PROJECT_VERSION_PRERELEASE}" STREQUAL "")
@@ -225,19 +231,6 @@ if(${PREFIX}CI_VERSION_ONLY)
 	# Allow CI to exit early.
 	return()
 endif()
-
-# Full Project Name
-set(PROJECT_FULL_NAME "StreamFX (for OBS Studio)")
-
-# Description
-set(PROJECT_DESCRIPTION "Better Production Quality, for free.")
-
-# Authors (TODO: Generate this from AUTHORS)
-set(PROJECT_AUTHORS "Michael Fabian 'Xaymar' Dirks <info@xaymar.com>")
-
-# Copyright Years (TODO: Update every year)
-set(PROJECT_COPYRIGHT_YEARS "2018 - 2020")
-
 
 ################################################################################
 # Platform Setup
@@ -1196,12 +1189,6 @@ LIST(APPEND PROJECT_TEMPLATES "templates/module.cpp.in")
 LIST(APPEND PROJECT_PRIVATE_GENERATED "${PROJECT_BINARY_DIR}/generated/module.cpp")
 
 if(D_PLATFORM_WINDOWS) # Windows Support
-	set(PROJECT_PRODUCT_NAME "${PROJECT_FULL_NAME}")
-	set(PROJECT_COMPANY_NAME "${PROJECT_AUTHORS}")
-	set(PROJECT_COPYRIGHT "${PROJECT_AUTHORS} © ${PROJECT_COPYRIGHT_YEARS}")
-	set(PROJECT_LEGAL_TRADEMARKS_1 "")
-	set(PROJECT_LEGAL_TRADEMARKS_2 "")
-
 	configure_file(
 		"templates/version.rc.in"
 		"generated/version.rc"
